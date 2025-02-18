@@ -1,7 +1,7 @@
 from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
 from django.utils.module_loading import import_string
-from django.conf import setttings
+from django.conf import settings
 
 from .image_formats import formats_to_convert
 from .settings import DELETE_ORIGINAL

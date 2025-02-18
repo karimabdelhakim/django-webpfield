@@ -1,13 +1,13 @@
 from django.core.files.base import ContentFile
-from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import FileSystemStorage, storages
 from django.utils.module_loading import import_string
-from django.conf import settings
+from django.conf import DEFAULT_STORAGE_ALIAS
 
 from .image_formats import formats_to_convert
 from .settings import DELETE_ORIGINAL
 from .utils import convert_to_webp
 
-DEFAULT_FILE_STORAGE_CLASS = import_string(settings.DEFAULT_FILE_STORAGE)
+DEFAULT_FILE_STORAGE_CLASS = import_string(storages.backends[DEFAULT_STORAGE_ALIAS]["BACKEND"])
 
 class WebPStorage(DEFAULT_FILE_STORAGE_CLASS):
     def save(self, name, content, max_length=None):

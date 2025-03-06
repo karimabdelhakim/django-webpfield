@@ -30,3 +30,8 @@ class WebPStorage(DEFAULT_FILE_STORAGE_CLASS):
 
         webp_name = f"{original_image_name.split('.')[0]}.webp"
         return super().save(webp_name, webp_content, max_length=max_length)
+
+    def get_object_parameters(self, name):
+        params = super().get_object_parameters(name)
+        params["ContentType"] = "image/webp"
+        return params
